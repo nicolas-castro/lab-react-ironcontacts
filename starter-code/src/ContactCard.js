@@ -1,6 +1,7 @@
 import React from 'react'
+import CoolButton from './CoolButton';
 
-function ContactCard({contact}) {
+function ContactCard({contact, deleteMethod, index}) {
 
   const {pictureUrl, name, popularity} = contact
 
@@ -16,7 +17,8 @@ function ContactCard({contact}) {
             </div>
             <div className="media-content">
               <p className="title is-4">{name}</p>
-              <p className="subtitle is-6">{popularity.toFixed(2)}</p>
+              <p className="subtitle is-6">{popularity.toFixed(2)}  <CoolButton onClick={ () => deleteMethod(index) } btnName="Delete" /> </p>
+            
             </div>
           </div>
         </div>

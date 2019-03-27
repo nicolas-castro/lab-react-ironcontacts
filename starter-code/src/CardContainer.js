@@ -27,7 +27,14 @@ class CardContainer extends Component {
         return 0;
       });
     this.setState({contacts: copyOfContacts});
-}
+  }
+
+  deleteContact = (contactId) => {
+    const {contacts} = this.state;
+    const copyOfContacts = [...contacts];
+    copyOfContacts.splice(+contactId, 1);
+    this.setState({contacts: copyOfContacts});
+  }
 
   render() {
 
@@ -35,11 +42,11 @@ class CardContainer extends Component {
 
     return (
       <div>
-        <CoolButton onClick={ this.AddRandomContact } />
-        <CoolButton onClick={ this.sortByName } />
+        <CoolButton onClick={ this.AddRandomContact } btnName="Add Random Contact" />
+        <CoolButton onClick={ this.sortByName } btnName="Sort by Name" />
           {
             contacts.map( (contact, index)=>
-            <ContactCard key={index} contact={contact} />
+            <ContactCard key={index} contact={contact} index={index} deleteMethod={this.deleteContact}/>
             )
           } 
 
