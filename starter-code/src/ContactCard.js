@@ -17,7 +17,7 @@ function ContactCard({contact, deleteMethod, index}) {
             </div>
             <div className="media-content">
               <p className="title is-4">{name}</p>
-              <p className="subtitle is-6">{popularity.toFixed(2)}  <CoolButton onClick={ () => deleteMethod(index) } btnName="Delete" /> </p>
+              <p className="subtitle is-6">{popularity.toFixed(2)}  <CoolButton nameOfClass="button is-danger" onClick={ () => deleteMethod(index) } btnName="Delete" /> </p>
             
             </div>
           </div>

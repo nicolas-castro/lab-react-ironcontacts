@@ -29,6 +29,14 @@ class CardContainer extends Component {
     this.setState({contacts: copyOfContacts});
   }
 
+  sortByPopularity= () => {
+    const copyOfContacts = [...this.state.contacts];
+    copyOfContacts.sort(function(a, b){
+        return b.popularity - a.popularity;
+      });
+    this.setState({contacts: copyOfContacts});
+  }
+
   deleteContact = (contactId) => {
     const {contacts} = this.state;
     const copyOfContacts = [...contacts];
@@ -42,8 +50,11 @@ class CardContainer extends Component {
 
     return (
       <div>
-        <CoolButton onClick={ this.AddRandomContact } btnName="Add Random Contact" />
-        <CoolButton onClick={ this.sortByName } btnName="Sort by Name" />
+        <div className="buttons">
+        <CoolButton nameOfClass="button is-success"  onClick={ this.AddRandomContact } btnName="Add Random Contact" />
+        <CoolButton nameOfClass="button is-info"  onClick={ this.sortByName } btnName="Sort by Name" />
+        <CoolButton nameOfClass="button is-warning"  onClick={ this.sortByPopularity } btnName="Sort by Popularity" />
+        </div>
           {
             contacts.map( (contact, index)=>
             <ContactCard key={index} contact={contact} index={index} deleteMethod={this.deleteContact}/>
