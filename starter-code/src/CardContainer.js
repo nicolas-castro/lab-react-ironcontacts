@@ -17,14 +17,26 @@ class CardContainer extends Component {
     this.setState({contacts: [...contacts, newContact] });
   }
 
+  sortByName = () => {
+    const copyOfContacts = [...this.state.contacts];
+    copyOfContacts.sort(function(a, b){
+        var x = a.name.toLowerCase();
+        var y = b.name.toLowerCase();
+        if (x < y) {return -1;}
+        if (x > y) {return 1;}
+        return 0;
+      });
+    this.setState({contacts: copyOfContacts});
+}
+
   render() {
 
     const {contacts} = this.state
 
-
     return (
       <div>
         <CoolButton onClick={ this.AddRandomContact } />
+        <CoolButton onClick={ this.sortByName } />
           {
             contacts.map( (contact, index)=>
             <ContactCard key={index} contact={contact} />
